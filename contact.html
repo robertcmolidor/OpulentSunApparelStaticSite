@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact | Opulent Sun Apparel</title>
+        <link rel="stylesheet" href="style.css">
+      </head>
+      <body>
+        <header>
+          <nav>
+            <a href="index.html"><img src="OSATopLeftLogo.svg" alt="Opulent Sun Apparel logo" class="logo"/></a>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="https://www.facebook.com/opulentsunapparel" target="_blank"><img src="assets/fblogo.png" alt="Facebook icon" class="social-icon"/></a></li>
+
+            </ul>
+          </nav>
+        </header>
+        <main>
+          <section class="contact-form">
+            <h2>Contact Us</h2>
+            <p>Thank you for your interest in our services. Please fill out the form below to get in touch with us.</p>
+            <form>
+              <label for="name">Your Name:</label>
+              <input type="text" id="name" name="name" required>
+              <label for="email">Your Email Address:</label>
+              <input type="email" id="email" name="email" required>
+              <label for="phone">Your Phone Number:</label>
+              <input type="tel" id="phone" name="phone" oninput="formatPhoneNumber(this)" pattern="\(\d{3}\)\s\d{3}-\d{4}" required>
+              <label for="message">Your Message:</label>
+              <textarea id="message" name="message" required></textarea>
+              <p>Please provide as much detail as possible about what you're looking for, including the type of clothing or image you'd like us to work with.</p>
+              <button type="submit" class="btn">Send Email</button>
+            </form>
+            <p>We take your privacy seriously. For more information, please see our <a href="privacy-policy.html">privacy policy</a>.</p>
+          </section>
+        </main>
+        
+        
+        
+    <footer>
+      <p>&copy; 2023 Opulent Sun Apparel</p>
+    </footer>
+  </body>
+
+  <script>
+    function formatPhoneNumber(input) {
+      let value = input.value.replace(/\D/g, ''); // remove all non-digits from input
+      let formattedValue = '';
+      
+      if (value.length > 0) {
+        formattedValue = '(' + value.slice(0, 3) + ') ';
+      }
+      if (value.length >= 4) {
+        formattedValue += value.slice(3, 6) + '-';
+      }
+      if (value.length >= 7) {
+        formattedValue += value.slice(6, 10);
+      }
+      
+      input.value = formattedValue;
+    }
+
+    function validateForm() {
+      // Get form inputs
+      var name = document.getElementById("name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var phone = document.getElementById("phone").value.trim();
+      var message = document.getElementById("message").value.trim();
+  
+      // Validate name
+      if (name == "") {
+        alert("Please enter your name.");
+        return false;
+      }
+  
+      // Validate email
+      if (email == "") {
+        alert("Please enter your email address.");
+        return false;
+      }
+  
+      // Validate phone number
+      if (phone != "" && !phone.match(/^\d{3}-\d{3}-\d{4}$/)) {
+        alert("Please enter a valid phone number in the format XXX-XXX-XXXX.");
+        return false;
+      }
+  
+      // Validate message
+      if (message == "") {
+        alert("Please enter a message.");
+        return false;
+      }
+  
+      // All inputs are valid
+      return true;
+    }
+
+    function sendEmail() {
+      // Get form data
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var phone = document.getElementById('phone').value;
+      var message = document.getElementById('message').value;
+
+      // Create email message
+      var subject = 'Contact Form Submission';
+      var body = 'Name: ' + name + '\n\nEmail: ' + email + '\n\nPhone: ' + phone + '\n\nMessage: ' + message;
+
+      // Open user's email client with pre-filled message
+      window.location.href = 'mailto:contactus@opulentsunapparel.com?subject= OSA Web - ' + subject + '&body=' + encodeURIComponent(body);
+    }
+
+// Call sendEmail function when form is submitted
+document.querySelector('form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  sendEmail();
+});
+  </script>
+</html>
